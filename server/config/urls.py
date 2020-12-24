@@ -5,10 +5,12 @@ from django.conf.urls.static import static
 
 from apps.api.routers import router
 from .yasg import urlpatterns as docs_urls
+from rest_framework.authtoken import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include(router.urls)),
+    path('api/auth/token', views.obtain_auth_token, name='tokens'),
 ]
 
 urlpatterns += docs_urls

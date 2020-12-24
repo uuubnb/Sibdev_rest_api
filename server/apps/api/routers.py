@@ -10,3 +10,4 @@ router.register('users', UserViewSet, basename='users')
 router.register('places', PlaceViewSet, basename='places')
 router.register('ingredients', IngredientViewSet, basename='ingredients')
 router.register('meals', MealViewSet, basename='meals')
+
