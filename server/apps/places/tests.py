@@ -335,7 +335,6 @@ class MealActionsTest(APITestCase):
 
 class IngredientActionsTest(APITestCase):
     def setUp(self):
-        # PlaceActionsTest.setUp(self.owners_token)
         self.user = User.objects.create(username='testuser', password='testpassword')
         self.token = Token.objects.create(user=self.user)
         ingredient = Ingredient.objects.create(name='some_ingredient', calories='100')

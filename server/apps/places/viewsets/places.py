@@ -6,9 +6,12 @@ from apps.places.filters import IngredientFilterSet, MealFilterSet, IngredientFi
 from rest_framework import permissions
 from apps.main.permissions.main import IsOwnerOrReadOnly, IsPlaceOwnerOrReadOnly
 from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 from drf_yasg.utils import swagger_auto_schema
 
 
+@method_decorator(name='list', decorator=cache_page(60 * 15))
+@method_decorator(name='retrieve', decorator=cache_page(60 * 15))
 class PlaceViewSet(viewsets.ModelViewSet):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
