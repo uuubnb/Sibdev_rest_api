@@ -13,3 +13,5 @@ class TestViewSet(
 ):
     serializer_class = TestSerializer
     queryset = Test.objects.all()
+    swagger_schema = None
+
