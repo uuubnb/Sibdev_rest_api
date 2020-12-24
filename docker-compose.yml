@@ -15,9 +15,12 @@ services:
             DEBUG: 'True'
             DATABASE_URL: 'postgres://postgres:@db:5432/postgres'
             BROKER_URL: 'amqp://user:password@rabbitmq:5672/my_vhost'
+        env_file:
+            - web-variables.env
 
     db:
         image: postgres:11.2
         environment:
             POSTGRES_DB: postgres
             POSTGRES_USER: postgres
+
