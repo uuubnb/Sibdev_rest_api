@@ -1,1 +1,2 @@
-from .places import PlaceSerializer
+from .places import PlaceSerializer, IngredientSerializer, MealSerializer
+
