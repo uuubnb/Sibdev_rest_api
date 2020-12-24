@@ -1,1 +1,2 @@
-from .places import PlaceViewSet
+from .places import PlaceViewSet, IngredientViewSet, MealViewSet
+

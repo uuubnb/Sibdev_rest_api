@@ -10,9 +10,8 @@ class Place(models.Model):
     name = models.CharField(
         max_length=100
     )
-    picture = models.URLField(
+    picture = models.ImageField(
         blank=True,
-        max_length=200
     )
     time_open = models.TimeField(
         null=True,
@@ -46,5 +45,55 @@ class Place(models.Model):
         decimal_places=7,
     )
 
+    class Meta:
+        verbose_name = 'Название заведения'
+        verbose_name_plural = 'Названия заведений'
+
     def __str__(self):
         return self.name
+
+
+class Ingredient(models.Model):
+    name = models.CharField(
+        max_length=100
+    )
+    calories = models.IntegerField(
+        default=0
+    )
+
+    class Meta:
+        verbose_name = 'Название ингридиента'
+        verbose_name_plural = 'Названия ингридиентов'
+
+    def __str__(self):
+        return self.name
+
+
+class Meal(models.Model):
+    place = models.ForeignKey(
+        Place,
+        on_delete=models.CASCADE
+    )
+    name = models.CharField(
+        max_length=100
+    )
+    picture = models.ImageField(
+        blank=True
+    )
+    price = models.IntegerField(
+        default=0
+    )
+    ingredients = models.ManyToManyField(
+        Ingredient
+    )
+    total_calories = models.IntegerField(
+        default=0
+    )
+
+    class Meta:
+        verbose_name = 'Название блюда'
+        verbose_name_plural = 'Названия блюд'
+
+    def __str__(self):
+        return self.name
+

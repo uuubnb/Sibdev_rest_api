@@ -1,3 +1,4 @@
-from .places import Place
+from .places import Place, Ingredient, Meal
 
 from .signals import *
+
