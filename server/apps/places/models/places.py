@@ -57,7 +57,7 @@ class Ingredient(models.Model):
     name = models.CharField(
         max_length=100
     )
-    calories = models.IntegerField(
+    calories = models.PositiveSmallIntegerField(
         default=0
     )
 
@@ -80,8 +80,10 @@ class Meal(models.Model):
     picture = models.ImageField(
         blank=True
     )
-    price = models.IntegerField(
-        default=0
+    price = models.DecimalField(
+        default=0,
+        max_digits=7,
+        decimal_places=2,
     )
     ingredients = models.ManyToManyField(
         Ingredient

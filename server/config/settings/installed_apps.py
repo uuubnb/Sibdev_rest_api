@@ -11,6 +11,7 @@ INSTALLED_APPS = [
 ]
 
 LOCAL_APPS = [
+    'apps.main',
     'apps.test',
     'apps.users',
     'apps.places',
