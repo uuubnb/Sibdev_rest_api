@@ -1,4 +1,3 @@
-from rest_framework.viewsets import ModelViewSet
 from rest_framework import mixins
 from rest_framework import viewsets
 
