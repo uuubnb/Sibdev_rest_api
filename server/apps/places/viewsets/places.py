@@ -3,11 +3,14 @@ from apps.places.models import Place, Ingredient, Meal
 from apps.places.serializers import PlaceSerializer, IngredientSerializer, MealSerializer
 from url_filter.integrations.drf import DjangoFilterBackend
 from url_filter.filtersets import ModelFilterSet
+from rest_framework import permissions
+from apps.main.permissions.main import IsOwnerOrReadOnly, IsPlaceOwnerOrReadOnly
 
 
 class PlaceViewSet(viewsets.ModelViewSet):
     queryset = Place.objects.all()
     serializer_class = PlaceSerializer
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
@@ -23,6 +26,7 @@ class IngredientViewSet(viewsets.ReadOnlyModelViewSet):
     serializer_class = IngredientSerializer
     filter_backends = [DjangoFilterBackend]
     filter_class = IngredientFilterSet
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
 
 
 class MealFilterSet(ModelFilterSet):
@@ -35,6 +39,7 @@ class MealViewSet(viewsets.ModelViewSet):
     serializer_class = MealSerializer
     filter_backends = [DjangoFilterBackend]
     filter_class = MealFilterSet
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsPlaceOwnerOrReadOnly]
 
     def perform_create(self, serializer):
         serializer.save()
